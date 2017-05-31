@@ -21,7 +21,7 @@ module.exports = {
     , "react/no-unknown-property": 2
     // , "react/no-unused-prop-types": 2
     , "react/prefer-es6-class": 2
-    , "react/prefer-stateless-function": 2
+    , "react/prefer-stateless-function": 1
     // , "react/prop-types": 2
     , "react/react-in-jsx-scope": 2
     // , "react/require-optimization": 2
