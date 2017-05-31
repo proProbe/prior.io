@@ -1,6 +1,6 @@
 module.exports = {
     parser: "babel-eslint",
-    plugins: ["eslint-plugin-react", "eslint-plugin-react-native"],
+    plugins: ["eslint-plugin-react"],
     extends: [
         "./configs/eslint/general-rules.js",
         "./configs/eslint/react-rules.js"
