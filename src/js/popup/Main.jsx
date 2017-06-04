@@ -17,7 +17,7 @@ type State = {
 export default class extends React.Component {
 	props: Props
 	state: State
-	intervalID: number = 0
+	intervalID: ?number
 	constructor(props: Props) {
 		super(props);
 		this.state = this.initState();
@@ -31,8 +31,10 @@ export default class extends React.Component {
 	}
 
 	clearIntervalID = (): void => {
-		clearInterval(this.intervalID);
-		this.intervalID = 0;
+		if (this.intervalID) {
+			clearInterval(this.intervalID);
+			this.intervalID = undefined;
+		}
 	}
 
 	setUrl = (url: string): void => {
