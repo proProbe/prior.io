@@ -3,6 +3,7 @@ import React from "react";
 import UrlInput from "./UrlInput";
 import IntervalInput from "./IntervalInput";
 import Timer from "../utils/timer";
+import Socket from "../utils/socket";
 
 const DEFAULT_INTERVAL = 15 * Timer.minute;
 
@@ -18,9 +19,12 @@ export default class extends React.Component {
 	props: Props
 	state: State
 	intervalID: ?number
+	socket: Socket
+
 	constructor(props: Props) {
 		super(props);
 		this.state = this.initState();
+		this.socket = this.initSocket();
 	}
 
 	initState = (): State => {
@@ -28,6 +32,14 @@ export default class extends React.Component {
 			url: "",
 			interval: DEFAULT_INTERVAL,
 		};
+	}
+
+	initSocket = (): Socket => {
+		const socket = new Socket();
+		socket.addListener("test2", (response) => {
+			console.log(response);
+		});
+		return socket;
 	}
 
 	clearIntervalID = (): void => {
@@ -47,6 +59,7 @@ export default class extends React.Component {
 
 	startSearch = (): void => {
 		console.log("startsearch");
+		this.socket.postMessage({id: "test", content: "testing it out"});
 	}
 
 	clearSearch = (): void => {
