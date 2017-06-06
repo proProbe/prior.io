@@ -4,7 +4,7 @@ import type {
 	// RequestState,
 	Message,
 	BackgroundMessage,
-} from "./constants";
+} from "./types";
 
 type Listener = {
 	id: string,

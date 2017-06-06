@@ -80,7 +80,7 @@ export default class extends React.Component {
 			<div>
 				<UrlInput onChange={this.setUrl} url={this.state.url} />
 				<IntervalInput onChange={this.setInterval} interval={this.state.interval} />
-				<button onClick={this.startSearch}>Search</button>
+				<button onClick={this.startSearch} disabled={this.state.requestState.type === "Start"}>Search</button>
 				<button onClick={this.clearSearch}>Clear</button>
 			</div>
 		);

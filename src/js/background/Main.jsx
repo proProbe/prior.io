@@ -64,13 +64,15 @@ export default class extends React.Component {
 	}
 
 	update = (state: State, msg: Message): State => {
-		// return state;
 		console.log("Updating: ", state, msg);
 		switch (msg.id) {
 			case "Start search":
 				return {
 					...state,
 					...msg.data,
+					requestState: {
+						type: "Start",
+					},
 				};
 			case "Clear search":
 				this.clearIntervalID();
