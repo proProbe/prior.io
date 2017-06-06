@@ -2,7 +2,8 @@
 import React from "react";
 
 type Props = {
-	onInput: (url: string) => void,
+	onChange: (url: string) => void,
+	url: string,
 }
 
 type State = {
@@ -16,9 +17,9 @@ export default class extends React.Component {
 		super(props);
 	}
 
-	onInput = (event: Object): void => {
+	onChange = (event: Object): void => {
 		const url = event.target.value;
-		this.props.onInput(url);
+		this.props.onChange(url);
 	}
 
 	render() {
@@ -28,7 +29,8 @@ export default class extends React.Component {
 				<input
 					type="text"
 					placeholder="Url"
-					onInput={this.onInput}
+					value={this.props.url}
+					onChange={this.onChange}
 				/>
 			</div>
 		);

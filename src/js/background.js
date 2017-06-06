@@ -1,10 +1,9 @@
 // @flow
-declare var chrome: any;
+import Main from "./background/Main.jsx";
+import React from "react";
+import { render } from "react-dom";
 
-chrome.runtime.onConnect.addListener((port) => {
-	console.log(port);
-	port.onMessage.addListener((msg) => {
-		console.log(msg);
-		port.postMessage({id: "test2", content: "whaaat"});
-	});
-});
+render(
+    <Main />,
+    window.document.getElementById("background-container")
+);

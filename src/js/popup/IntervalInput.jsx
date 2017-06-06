@@ -3,7 +3,8 @@ import React from "react";
 
 
 type Props = {
-	onInput: (interval: number) => void,
+	onChange: (interval: number) => void,
+	interval: number,
 }
 
 type State = {
@@ -17,16 +18,21 @@ export default class extends React.Component {
 		super(props);
 	}
 
-	onInput = (event: Object): void => {
+	onChange = (event: Object): void => {
 		const interval = event.target.value;
-		this.props.onInput(interval);
+		this.props.onChange(interval);
 	}
 
 	render() {
 		return (
 			<div>
 				<h4>Add Interval</h4>
-				<input type="number" placeholder="Interval" onInput={this.onInput} />
+				<input
+					type="number"
+					placeholder="Interval"
+					value={this.props.interval}
+					onChange={this.onChange}
+				/>
 			</div>
 		);
 	}

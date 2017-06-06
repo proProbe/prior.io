@@ -4,6 +4,11 @@ import UrlInput from "./UrlInput";
 import IntervalInput from "./IntervalInput";
 import Timer from "../utils/timer";
 import Socket from "../utils/socket";
+import type {
+	RequestState,
+	// Message,
+	BackgroundMessage,
+} from "../utils/types";
 
 const DEFAULT_INTERVAL = 15 * Timer.minute;
 
@@ -13,40 +18,42 @@ type Props = {
 type State = {
 	url: string,
 	interval: number,
+	requestState: RequestState,
 }
 
 export default class extends React.Component {
 	props: Props
 	state: State
-	intervalID: ?number
 	socket: Socket
 
 	constructor(props: Props) {
 		super(props);
 		this.state = this.initState();
-		this.socket = this.initSocket();
 	}
 
 	initState = (): State => {
 		return {
 			url: "",
 			interval: DEFAULT_INTERVAL,
+			requestState: {type: "None"},
 		};
+	}
+
+	componentDidMount() {
+		this.socket = this.initSocket();
 	}
 
 	initSocket = (): Socket => {
 		const socket = new Socket();
-		socket.addListener("test2", (response) => {
-			console.log(response);
+		socket.addListener("On connect", (response: BackgroundMessage) => {
+			if (response.id === "On connect") {
+				const newState = response.data;
+				this.setState({
+					...newState,
+				});
+			}
 		});
 		return socket;
-	}
-
-	clearIntervalID = (): void => {
-		if (this.intervalID) {
-			clearInterval(this.intervalID);
-			this.intervalID = undefined;
-		}
 	}
 
 	setUrl = (url: string): void => {
@@ -58,19 +65,21 @@ export default class extends React.Component {
 	}
 
 	startSearch = (): void => {
-		console.log("startsearch");
-		this.socket.postMessage({id: "test", content: "testing it out"});
+		this.socket.postMessage({
+			id: "Start search",
+			data: {url: this.state.url, interval: this.state.interval},
+		});
 	}
 
 	clearSearch = (): void => {
-		this.clearIntervalID();
+		this.socket.postMessage({id: "Clear search"});
 	}
 
 	render() {
 		return (
 			<div>
-				<UrlInput onInput={this.setUrl} />
-				<IntervalInput onInput={this.setInterval} />
+				<UrlInput onChange={this.setUrl} url={this.state.url} />
+				<IntervalInput onChange={this.setInterval} interval={this.state.interval} />
 				<button onClick={this.startSearch}>Search</button>
 				<button onClick={this.clearSearch}>Clear</button>
 			</div>

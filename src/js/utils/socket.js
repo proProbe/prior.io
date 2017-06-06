@@ -1,14 +1,14 @@
 // @flow
 declare var chrome: any;
+import type {
+	// RequestState,
+	Message,
+	BackgroundMessage,
+} from "./constants";
 
 type Listener = {
 	id: string,
-	cb: () => void,
-}
-
-type Msg = {
-	id: string,
-	content: any,
+	cb: (msg: BackgroundMessage) => void,
 }
 
 const EXTENSION_ID = "prior.io";
@@ -24,7 +24,7 @@ export default class ChromeSocket {
 	}
 
 	initListener = () => {
-		this.port.onMessage.addListener((msg: Msg) => {
+		this.port.onMessage.addListener((msg: BackgroundMessage) => {
 			this.listeners.map((listener: Listener) => {
 				if (listener.id === msg.id) {
 					listener.cb(msg);
@@ -34,11 +34,11 @@ export default class ChromeSocket {
 		});
 	}
 
-	addListener = (id: string, cb: () => void): void => {
+	addListener = (id: string, cb: (msg: BackgroundMessage) => void): void => {
 		this.listeners = this.listeners.concat([{ id, cb }]);
 	}
 
-	postMessage = (message: Msg): void => {
-		this.port.postMessage(message.id, message.content);
+	postMessage = (msg: Message): void => {
+		this.port.postMessage(msg);
 	}
 }
