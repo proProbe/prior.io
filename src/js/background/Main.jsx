@@ -26,6 +26,7 @@ type State = {
 	interval: number,
 	requestState: RequestState,
 }
+
 export default class extends React.Component {
 	props: Props
 	state: State
@@ -67,6 +68,7 @@ export default class extends React.Component {
 		console.log("Updating: ", state, msg);
 		switch (msg.id) {
 			case "Start search":
+				this.requestHtml(msg.data.url);
 				return {
 					...state,
 					...msg.data,
@@ -76,7 +78,12 @@ export default class extends React.Component {
 				};
 			case "Clear search":
 				this.clearIntervalID();
-				return state;
+				return {
+					...state,
+					requestState: {
+						type: "Reset",
+					},
+				};
 			case "Error":
 				return {
 					...state,
@@ -90,6 +97,24 @@ export default class extends React.Component {
 				(msg.id: empty);
 				return state;
 		}
+	}
+
+	requestHtml = (url: string) => {
+		const testRequest = new Request(url);
+		fetch(testRequest)
+			.then((response) => {
+				const htmlPromise = response.text();
+				return htmlPromise;
+			})
+			.then((html) => {
+				console.log(html);
+			})
+			.catch((err) => {
+				console.error(err);
+			});
+		this.setState({
+
+		});
 	}
 
 	clearIntervalID = (): void => {

@@ -1,5 +1,8 @@
 {
   "name": "Prior.IO",
+	"description": "This extension alerts whenever a page has changed",
+  "manifest_version": 2,
+	"version": "1.0",
   "options_page": "options.html",
   "background": {
     "page": "background.html"
@@ -7,6 +10,12 @@
   "browser_action": {
     "default_popup": "popup.html"
   },
-  "manifest_version": 2,
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+	"permissions": [
+		"activeTab",
+		"https://ajax.googleapis.com/",
+    "http://*/*",
+    "https://*/*",
+    "http://www.google.com/"
+	]
 }
