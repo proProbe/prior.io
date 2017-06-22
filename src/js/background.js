@@ -4,6 +4,6 @@ import React from "react";
 import { render } from "react-dom";
 
 render(
-    <Main />,
-    window.document.getElementById("background-container")
+  <Main />,
+  window.document.getElementById("background-container")
 );

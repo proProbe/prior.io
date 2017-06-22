@@ -5,7 +5,7 @@ const minute = 60 * second;
 const hour = 60 * minute;
 
 export default {
-	second,
-	minute,
-	hour,
+  second,
+  minute,
+  hour,
 };

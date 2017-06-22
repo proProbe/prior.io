@@ -1,6 +1,6 @@
 module.exports = {
-    rules:
-    { "react/jsx-no-bind": 2
+  rules: {
+    "react/jsx-no-bind": 2
     // , "react/display-name": 2
     // , "react/forbid-component-props": 2
     // , "react/forbid-prop-types": 2
@@ -54,5 +54,5 @@ module.exports = {
     , "react/jsx-uses-vars": 2
     , "react/jsx-wrap-multilines": 2
     ,
-    },
+  },
 };

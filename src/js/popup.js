@@ -5,6 +5,6 @@ import React from "react";
 import { render } from "react-dom";
 
 render(
-    <Main />,
-    window.document.getElementById("app-container")
+  <Main />,
+  window.document.getElementById("app-container")
 );
