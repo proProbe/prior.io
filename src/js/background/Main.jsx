@@ -57,7 +57,7 @@ export default class extends React.Component {
           url: this.state.url,
           interval: this.state.interval,
           requestState: this.state.requestState,
-        }
+        },
       });
 
       // Start the listeners and update the state accordingly
