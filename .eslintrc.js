@@ -1,4 +1,15 @@
 module.exports = {
+  env: {
+    node: true,
+    mocha: true,
+    browser: true,
+    es6: true,
+    commonjs: true,
+    amd: true,
+    jasmine: true,
+    jest: true,
+    jquery: true
+  },
   parser: "babel-eslint",
   plugins: ["eslint-plugin-react"],
   extends: [
@@ -15,6 +26,7 @@ module.exports = {
       forOf: true,
       generators: false,
       modules: true,
+      module: true,
       objectLiteralComputedProperties: true,
       objectLiteralDuplicateProperties: false,
       objectLiteralShorthandMethods: true,
@@ -23,7 +35,7 @@ module.exports = {
       spread: true,
       superInFunctions: true,
       templateStrings: true,
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 7
   }

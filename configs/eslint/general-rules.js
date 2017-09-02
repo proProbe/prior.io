@@ -2,14 +2,14 @@ module.exports = {
   rules: {
     "no-new-object": 2,
     "no-const-assign": 2,
-    // , "no-duplicate-imports": 2
+    "no-duplicate-imports": 2,
     "no-useless-rename": 2,
     "prefer-const": 2,
     "no-unused-vars": [2, { args: "none" }],
     // , "object-shorthand": 2
     "quote-props": [2, "as-needed"],
     "no-array-constructor": 2,
-    // , quotes: [ 2, "double", "avoid-escape" ]
+    quotes: [ 2, "double", "avoid-escape" ],
     "prefer-template": 1,
     "wrap-iife": [2, "outside"],
     "no-loop-func": 2,
@@ -38,7 +38,7 @@ module.exports = {
     // make sure for-in loops have an if statement
     "guard-for-in": 2,
     // disallow the use of alert, confirm, and prompt
-    // , "no-alert": 1
+    "no-alert": 1,
     // disallow use of arguments.caller or arguments.callee
     "no-caller": 2,
     // disallow lexical declarations in case/default clauses
@@ -126,7 +126,7 @@ module.exports = {
     // disallow usage of configurable warning terms in comments: e.g. todo
     "no-warning-comments": [
       0,
-      { terms: ["todo", "fixme", "xxx"], location: "start" },
+      { terms: ["todo", "fixme", "xxx"], location: "start" }
     ],
     // Restrict how comments are written.
     "spaced-comment": [
@@ -135,13 +135,13 @@ module.exports = {
       {
         line: {
           markers: ["/"],
-          exceptions: ["-", "+"],
+          exceptions: ["-", "+"]
         },
         block: {
           markers: ["!"],
-          exceptions: ["*"],
-        },
-      },
+          exceptions: ["*"]
+        }
+      }
     ],
     // disallow use of the with statement
     "no-with": 2,
@@ -162,7 +162,7 @@ module.exports = {
     // 13.2 Use const declaration once per variable, not once per several
     "one-var": [2, "never"],
     // 15.1 === and !== over == and !=
-    // , eqeqeq: 2
+    eqeqeq: 2,
     // 15.5.1 use {} inside case when declaring variable.
     "no-case-declarations": 2,
     // 15.5.2 split up ternary expression.
@@ -184,9 +184,9 @@ module.exports = {
     // 18.8 No new lines permitted in start and end of blocks
     "padded-blocks": [2, "never"],
     // 18.10 No space in start and end of brackets.
-    // , "array-bracket-spacing": [ 2, "always" ]
+    // "array-bracket-spacing": [2, "always"],
     // 18.11 Spacing inside curly braces.
-    // , "object-curly-spacing": [ 2, "always" ]
+    // "object-curly-spacing": [2, "always"],
     // 18.12 Max column length.
     "max-len": [2, 120],
     // 19.1 No leading commas.
@@ -204,10 +204,10 @@ module.exports = {
     // Forbid usage of variables. Use let or const instead, ES6 style.
     "no-var": 2,
     // Avoid leaving behind console.log by marking them with warnings.
-    // , "no-console": 1
+    "no-console": 1,
     // Forbid usage of restricted names such as NaN, Infinity, undefined, etc.
     "no-shadow-restricted-names": 2,
     // Forbid inexplicit declaration of global variables.
-    // "no-undef": [2, { typeof: true }],
-  },
+    "no-undef": [2, { typeof: true }]
+  }
 };
